@@ -68,8 +68,13 @@ class Executor
   end
 
   def save_result_to_file(array_of_products)
-    CSV.open(filename, 'wb', col_sep: "", quote_char: "") do |csv|
-      csv << array_of_products
+    begin
+      CSV.open(filename, 'wb', col_sep: "", quote_char: "") do |csv|
+        csv << array_of_products
+        puts "Everything is OK"
+      rescue => e
+        puts e.message
+      end
     end
   end
 end
